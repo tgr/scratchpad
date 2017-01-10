@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Unicode fragment handling test</title>
+	<style>
+		h2:target:after { color: red; content: " <-- selected"; }
+	</style>
+</head>
+<body>
+	<ul>
+		<li><a href="#बादल">#बादल</a>
+		<li><a href="#%E0%A4%AC%E0%A4%BE%E0%A4%A6%E0%A4%B2">#%E0%A4%AC%E0%A4%BE%E0%A4%A6%E0%A4%B2</a>
+	</ul>
+
+	<hr>
+
+	<h2 id="बादल">id="बादल"</h2>
+	<h2 id="%E0%A4%AC%E0%A4%BE%E0%A4%A6%E0%A4%B2">id="%E0%A4%AC%E0%A4%BE%E0%A4%A6%E0%A4%B2"</h2>
+</body>
+</html>
+
