@@ -4,18 +4,25 @@
 	<title>Unicode fragment handling test</title>
 	<style>
 		h2:target:after { color: red; content: " <-- selected"; }
+		li.gap { margin-bottom: 0.5em; }
 	</style>
 </head>
 <body>
 	<ul>
 		<li><a href="#बादल">#बादल</a>
-		<li><a href="#%E0%A4%AC%E0%A4%BE%E0%A4%A6%E0%A4%B2">#%E0%A4%AC%E0%A4%BE%E0%A4%A6%E0%A4%B2</a>
+		<li class="gap"><a href="#%E0%A4%AC%E0%A4%BE%E0%A4%A6%E0%A4%B2">#%E0%A4%AC%E0%A4%BE%E0%A4%A6%E0%A4%B2</a>
+		<li><a href="#Санкт-Петербург">#Санкт-Петербург</a>
+		<li class="gap"><a href="#%D0%A1%D0%B0%D0%BD%D0%BA%D1%82-%D0%9F%D0%B5%D1%82%D0%B5%D1%80%D0%B1%D1%83%D1%80%D0%B3">#%D0%A1%D0%B0%D0%BD%D0%BA%D1%82-%D0%9F%D0%B5%D1%82%D0%B5%D1%80%D0%B1%D1%83%D1%80%D0%B3</a></li>
+		<li><a href="#😀😀😀">#😀😀😀</a></li>
+		<li><a href="#%F0%9F%98%80%F0%9F%98%80%F0%9F%98%80">#%F0%9F%98%80%F0%9F%98%80%F0%9F%98%80</a></li>
 	</ul>
 
 	<hr>
 
 	<h2 id="बादल">id="बादल"</h2>
 	<h2 id="%E0%A4%AC%E0%A4%BE%E0%A4%A6%E0%A4%B2">id="%E0%A4%AC%E0%A4%BE%E0%A4%A6%E0%A4%B2"</h2>
+	<h2 id="Санкт-Петербург">id="Санкт-Петербург"</h2>
+	<h2 id="%F0%9F%98%80%F0%9F%98%80%F0%9F%98%80">id="%F0%9F%98%80%F0%9F%98%80%F0%9F%98%80"</h2>
 </body>
 </html>
 
