@@ -3,10 +3,24 @@
 <head>
 	<title>Unicode fragment handling test</title>
 	<style>
-		h2:target:after { color: red; content: " <-- selected"; }
+		h2:target:after { color: red; content: " ← selected"; }
+		h2.js:after { color: red; content: " ← JS"; }
 		li.gap { margin-bottom: 0.5em; }
 		.small { font-size: 90%; }
+		h2 small { font-size: 65%; font-weight: normal; color: grey; }
 	</style>
+	<script>
+		function update() {
+			var e, js_hash = document.getElementById( 'js-hash' ),
+				js_element = document.getElementById( 'js-element' );
+			js_hash.innerText = location.hash.substr(1);
+			e = document.getElementById( location.hash.substr( 1 ) );
+			js_element.innerText = e ? e.outerHTML.match( /<.*?>/ )[0] : '-';
+		}
+		document.addEventListener( 'DOMContentLoaded', update );
+		window.addEventListener( 'load', update );
+		window.addEventListener( 'hashchange', update, false );
+	</script>
 </head>
 <body>
 	<ol>
@@ -21,9 +35,16 @@
 	<hr>
 
 	<h2 id="बादल">1. id="बादल"</h2>
-	<h2 id="%E0%A4%AC%E0%A4%BE%E0%A4%A6%E0%A4%B2">2. id="%E0%A4%AC%E0%A4%BE%E0%A4%A6%E0%A4%B2"</h2>
+	<h2 id="%E0%A4%AC%E0%A4%BE%E0%A4%A6%E0%A4%B2">2. id="%E0%A4%AC%E0%A4%BE%E0%A4%A6%E0%A4%B2" <small>(बादल)</small></h2>
 	<h2 id="Санкт-Петербург">3. id="Санкт-Петербург"</h2>
-	<h2 id="%F0%9F%98%80%F0%9F%98%80%F0%9F%98%80">4. id="%F0%9F%98%80%F0%9F%98%80%F0%9F%98%80"</h2>
+	<h2 id="%F0%9F%98%80%F0%9F%98%80%F0%9F%98%80">4. id="%F0%9F%98%80%F0%9F%98%80%F0%9F%98%80" <small>(😀😀😀)</small></h2>
+
+	<hr>
+
+	<p>
+		Value of <code>location.hash</code>: <span id="js-hash"></span><br>
+		Value of <code>document.getElementById(location.hash.substr(1))</code>: <span id="js-element">-</span>
+	</p>
 
 	<hr>
 
@@ -32,7 +53,7 @@
 		<ul>
 			<li>Expected behavior (per WHATWG URI <a href="https://url.spec.whatwg.org/#fragment-state">4.2</a> and <a href="https://html.spec.whatwg.org/#the-indicated-part-of-the-document">7.8.9</a>): when clicking on the links, the headings get selected according to the following mapping: 1 → 1, 2 → 1, 3 → 3, 4 → 3, 5 → -, 6 → -
 			<li>Actual behavior on Chrome 55 / Ubuntu: 1 → 1, 2 → 2, 3 → 3, 4 → 3, 5 → -, 6 → 4
-			<li>Actual behavior on Firefox 50 / Ubuntu: 1 → 1, 2 → 2, 3 → 3, 4 → 3, 5 → -, 6 → -
+			<li>Actual behavior on Firefox 50 / Ubuntu: 1 → 1, 2 → 1, 3 → 3, 4 → 3, 5 → -, 6 → -
 	</p>
 </body>
 </html>
