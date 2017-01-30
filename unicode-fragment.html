@@ -8,6 +8,10 @@
 		li.gap { margin-bottom: 0.5em; }
 		.small { font-size: 90%; }
 		h2 small { font-size: 65%; font-weight: normal; color: grey; }
+		table { border-collapse: collapse; }
+		table caption { caption-side: bottom; font-size: 85%; }
+		table td { padding: 3px 5px; border: 1px solid #CCC; font-size: 85%; }
+		.wrong { background-color: #FDD; }
 	</style>
 	<script>
 		function update() {
@@ -48,13 +52,58 @@
 
 	<hr>
 
+	<table>
+		<caption>Tested with: Chrome 55 / Ubuntu, Firefox 50 / Ubuntu, Chrome 55 / Mac OS, Firefox 50 / Mac OS, Opera 42 / Mac OS, Safari 10 / Mac OS</caption>
+		<tr>
+			<td>Selected entry
+			<td>1
+			<td>2
+			<td>3
+			<td>4
+			<td>5
+			<td>6
+		<tr>
+			<td>Expected anchor (per WHATWG URI <a href="https://url.spec.whatwg.org/#fragment-state">4.2</a> and <a href="https://html.spec.whatwg.org/#the-indicated-part-of-the-document">7.8.9</a>)
+			<td>1
+			<td>1
+			<td>3
+			<td>3
+			<td>-
+			<td>-
+		<tr>
+			<td>Chrome
+			<td>1
+			<td class="wrong">2
+			<td>3
+			<td>3
+			<td>-
+			<td class="wrong">4
+		<tr>
+			<td>Firefox
+			<td>1
+			<td>1
+			<td>3
+			<td>3
+			<td>-
+			<td>-
+		<tr>
+			<td>Opera
+			<td>1
+			<td class="wrong">2
+			<td>3
+			<td>3
+			<td>-
+			<td class="wrong">4
+		<tr>
+			<td>Safari
+			<td class="wrong">2
+			<td class="wrong">2
+			<td>3
+			<td>3
+			<td class="wrong">4
+			<td class="wrong">4
+	</table>
 	<p class="small"><a href="https://github.com/tgr/scratchpad/blob/master/unicode-fragment.html">repo</a></p>
-	<p class="small">
-		<ul>
-			<li>Expected behavior (per WHATWG URI <a href="https://url.spec.whatwg.org/#fragment-state">4.2</a> and <a href="https://html.spec.whatwg.org/#the-indicated-part-of-the-document">7.8.9</a>): when clicking on the links, the headings get selected according to the following mapping: 1 → 1, 2 → 1, 3 → 3, 4 → 3, 5 → -, 6 → -
-			<li>Actual behavior on Chrome 55 / Ubuntu: 1 → 1, 2 → 2, 3 → 3, 4 → 3, 5 → -, 6 → 4
-			<li>Actual behavior on Firefox 50 / Ubuntu: 1 → 1, 2 → 1, 3 → 3, 4 → 3, 5 → -, 6 → -
-	</p>
 </body>
 </html>
 
